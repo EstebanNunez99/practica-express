@@ -1,10 +1,12 @@
 const express = require('express')
+const logger = require('./my-logger.js')
 
 const app = express()
 
 const PORT = process.env.PORT || 4000
 
 app.use(express.json())
+app.use(logger)
 
 //---- Rutas ----
 app.get('/', (req, res) => {
