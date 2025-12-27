@@ -1,5 +1,6 @@
 const express = require('express')
 const logger = require('./my-logger.js')
+const authGuards = require('./authGuards.js')
 
 const app = express()
 
@@ -29,6 +30,10 @@ app.post('/api/products', ( req, res )=>{
         msg: 'product successfully created',
         product : newProduct
     })
+})
+
+app.get('/api/admin/panel', authGuards, ( req, res ) => {
+    res.send(`Welcome to the admin panel, user with ID ${req.user.id}`)
 })
 
 
